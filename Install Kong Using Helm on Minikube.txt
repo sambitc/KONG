@@ -1,0 +1,33 @@
+4. Install PostgreSQL as Kong’s Database
+Kong requires PostgreSQL when running in database mode. Deploy PostgreSQL using Helm:
+
+helm install kong-postgres bitnami/postgresql --namespace kong   --set global.postgresql.auth.username=kong --set global.postgresql.auth.password=password   --set global.postgresql.auth.database=kong
+
+5. Install Kong with Database Mode Enabled
+Now, install Kong with dbless=false and link it to the PostgreSQL instance:
+
+helm install kong kong/kong --namespace kong  --set ingressController.enabled=false --set admin.enabled=true --set admin.http.enabled=true --set manager.enabled=true --set env.database=postgres --set env.pg_host=kong-postgres-postgresql --set env.pg_user=kong --set env.pg_password=password --set env.pg_database=kong --set env.admin_gui_url="http://localhost:8002" --set env.admin_api_uri="http://localhost:8001"
+
+6. Run Database Migrations
+Before using Kong in database mode, you must run migrations:
+kubectl exec -n kong -it deploy/kong -- kong migrations bootstrap
+
+If you've previously run migrations and need to update the schema:
+
+kubectl exec -n kong -it deploy/kong -- kong migrations up
+
+8. Forward Ports for Access
+Since we are using Minikube, forward the necessary ports:
+
+kubectl port-forward -n kong service/kong-admin 8001:8001 &
+kubectl port-forward -n kong service/kong-manager 8002:8002 &
+
+9. Access Kong Components
+Admin API: http://localhost:8001
+Kong Manager (GUI): http://localhost:8002
+
+10. Test Database Connection
+Run this command inside the Kong pod to check if it connects to PostgreSQL:
+
+kubectl exec -n kong -it deploy/kong -- kong config db_export
+
