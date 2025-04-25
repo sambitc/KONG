@@ -19,8 +19,8 @@ kubectl exec -n kong -it deploy/kong -- kong migrations up
 8. Forward Ports for Access
 Since we are using Minikube, forward the necessary ports:
 
-kubectl port-forward -n kong service/kong-admin 8001:8001 &
-kubectl port-forward -n kong service/kong-manager 8002:8002 &
+kubectl port-forward -n kong service/kong-kong-admin 8001:8001 &
+kubectl port-forward -n kong service/kong-kong-manager 8002:8002 &
 
 9. Access Kong Components
 Admin API: http://localhost:8001
