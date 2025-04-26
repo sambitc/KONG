@@ -22,6 +22,8 @@ Since we are using Minikube, forward the necessary ports:
 kubectl port-forward -n kong service/kong-kong-admin 8001:8001 &
 kubectl port-forward -n kong service/kong-kong-manager 8002:8002 &
 
+for accessing routes : kubectl port-forward -n kong service/kong-kong-proxy 8000:80
+
 9. Access Kong Components
 Admin API: http://localhost:8001
 Kong Manager (GUI): http://localhost:8002
