@@ -8,6 +8,12 @@ Now, install Kong with dbless=false and link it to the PostgreSQL instance:
 
 helm install kong kong/kong --namespace kong  --set ingressController.enabled=false --set admin.enabled=true --set admin.http.enabled=true --set manager.enabled=true --set env.database=postgres --set env.pg_host=kong-postgres-postgresql --set env.pg_user=kong --set env.pg_password=password --set env.pg_database=kong --set env.admin_gui_url="http://localhost:8002" --set env.admin_api_uri="http://localhost:8001"
 
+5.1. Enable kong ingress controller:
+helm upgrade kong kong/kong \
+  --namespace kong \
+  --set ingressController.enabled=true
+
+
 6. Run Database Migrations
 Before using Kong in database mode, you must run migrations:
 kubectl exec -n kong -it deploy/kong -- kong migrations bootstrap
