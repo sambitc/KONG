@@ -3,3 +3,4 @@ In multi cloud do we need to create knog service, route , pulgin in each differn
 Can you use terraform to udpate kong configuration or kong- kubernetes plugin etc.
 what is kong cluster plugin?
 How to minitor kong ingress controller ?
+How to manage TLS certificate while using kong inter kubernetes or openshift?
