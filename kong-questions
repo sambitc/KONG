@@ -1,0 +1,5 @@
+In multi cloud deployment how knog know in which clould to deploy
+In multi cloud do we need to create knog service, route , pulgin in each differnt cloud.
+Can you use terraform to udpate kong configuration or kong- kubernetes plugin etc.
+what is kong cluster plugin?
+How to minitor kong ingress controller ?
