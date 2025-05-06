@@ -1,1 +1,1 @@
-
+1. validate kong yaml: cat kong.yaml | deck file validate
