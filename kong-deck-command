@@ -1,1 +1,2 @@
 1. validate kong yaml: cat kong.yaml | deck file validate
+2. validate oas file : swagger-cli validate oas.yaml
