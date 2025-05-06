@@ -1,4 +1,6 @@
 1. validate kong yaml: cat kong.yaml | deck file validate
 2. validate oas file : swagger-cli validate oas.yaml
 3. oas to kong yaml : deck file openapi2kong --spec oas.yaml --output-file kong.yaml
+4. replace empty tag for all services and route on kong.yaml : yq eval '.services[].tags += ["my-tag2"] | .routes[].tags += ["my-tag2"]' -i kong.yaml
+
 
